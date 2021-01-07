@@ -1,7 +1,16 @@
+NODE_ENV: 'asd'
+
 server:
   port: 3000
 
 db:
+#  development:
+#    type: 'postgres'
+#    port: 5432
+#    database: 'postgres'
+#    password: 'postgres_password'
+#    user: 'postgres'
+#    host: 'localhost'
   type: 'postgres'
   port: 5432
   database: 'postgres'

@@ -1,8 +1,10 @@
-db:
+NODE_ENV: 'dev'
+
+DB:
   host: 'localhost'
   username: 'postgres'
-  password: 'postgres_password'
-  synchronize: true
+  password: 'postgres'
+  synchronize: false
 
 jwt:
   secret: 'secret'

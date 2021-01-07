@@ -11,7 +11,7 @@ import {
 
 @EntityRepository(User)
 export class UsersRepository extends Repository<User> {
-    private logger = new Logger('TaskController');
+    private logger = new Logger('UserController');
     private static async hashPassword(password: string, salt: string): Promise<string> {
         return bcrypt.hash(password, salt);
     }
@@ -25,8 +25,12 @@ export class UsersRepository extends Repository<User> {
         try {
             await user.save();
         } catch (e) {
-            this.logger.error(`Username ${email} is already taken`);
-            if (e.code === '23505') throw new ConflictException('Username taken');
+            if (e.code === '23505') {
+                this.logger.error(`Username ${email} is already taken`);
+                throw new ConflictException('Username taken');
+            } else {
+                this.logger.error('[ERROR]', e);
+            }
             throw new InternalServerErrorException();
         }
 
