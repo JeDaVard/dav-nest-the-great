@@ -7,8 +7,8 @@
   "license": "UNLICENSED",
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "nest build",
-    "build:heroku": "npm i -g @nestjs/cli && yarn db:mr && nest build",
+    "build": "npm i -g @nestjs/cli && yarn db:mr && nest build",
+    "build0": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "node dist/src/main",
     "start:nest": "nest start",
