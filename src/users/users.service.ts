@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import { InjectRepository } from '@nestjs/typeorm';
+
+import { UsersRepository } from './users.repository';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { UsersRepository } from './users.repository';
-import { InjectRepository } from '@nestjs/typeorm';
-import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class UsersService {
@@ -13,17 +14,17 @@ export class UsersService {
         private jwtService: JwtService,
     ) {}
 
-    async signUp(authCredentialsDto: CreateUserDto) {
-        const user = await this.userRepository.createUser(authCredentialsDto);
+    async signUp(CreateUserDto: CreateUserDto) {
+        const user = await this.userRepository.createUser(CreateUserDto);
         const payload = { id: user.id, username: user.email };
-        const accessToken = this.jwtService.sign(payload);
+        const accessToken = this.jwtService.sign(payload, { secret: process.env.JWT_SECRET });
         return { ...user, accessToken };
     }
 
     async signIn(authCredentialsDto: CreateUserDto) {
         const user = await this.userRepository.signIn(authCredentialsDto);
         const payload = { id: user.id, username: user.email };
-        const accessToken = this.jwtService.sign(payload);
+        const accessToken = this.jwtService.sign(payload, { secret: process.env.JWT_SECRET });
         return { ...user, accessToken };
     }
 
@@ -31,8 +32,8 @@ export class UsersService {
         return 'This action adds a new user';
     }
 
-    findAll() {
-        return this.userRepository.find({ select: ['id', 'email'] });
+    async findAll() {
+        return this.userRepository.find({ take: 100 });
     }
 
     findOne(id: number) {

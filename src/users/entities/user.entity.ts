@@ -20,6 +20,7 @@ export class User extends BaseEntity {
         return hash === this.password;
     }
     async hashPassword(password: string): Promise<void> {
+        console.log(this);
         this.salt = await bcrypt.genSalt();
         this.password = await bcrypt.hash(password, this.salt);
     }

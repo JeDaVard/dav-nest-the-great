@@ -10,8 +10,11 @@ async function bootstrap() {
         new FastifyAdapter({ logger: false }),
     );
     await app.register(fastifyCookie, {
-        secret: 'my-secret', // for cookies signature
+        secret: process.env.COOKIE_SIGNATURE_SECRET, // for cookies signature
     });
-    await app.listen(3000);
+    await app.listen(process.env.PORT, () => {
+        console.log(`Server is up on ${process.env.PORT} ..`);
+    });
 }
+
 bootstrap();
