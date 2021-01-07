@@ -10,7 +10,7 @@ WORKDIR /usr/src/app
 ENV PATH ./node_modules/.bin:$PATH
 ENV NODE_PATH ./
 ENV NODE_ENV=production
-ENV POSTGRES_HOST=database-1.co7sovn3dbca.us-east-1.rds.amazonaws.com
+ENV POSTGRES_HOST=database-1.ccvsdovde1lq.eu-central-1.rds.amazonaws.com
 
 # Copy your project to workdir, later your can also copy the lockfile and use the new "npm ci" command
 COPY . .
