@@ -9,7 +9,7 @@
     "prebuild": "rimraf dist",
     "build": "npm i -g @nestjs/cli && yarn db:mr && nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "node dist/main",
+    "start": "node dist/src/main",
     "start:nest": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
