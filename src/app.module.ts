@@ -4,7 +4,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfig } from './config/typeorm.config';
 import { UsersModule } from './users/users.module';
 
-console.log(process.env.POSTGRES_HOST, process.env.PORT);
 @Module({
     imports: [ConfigModule, TypeOrmModule.forRoot(typeOrmConfig), UsersModule],
 })
