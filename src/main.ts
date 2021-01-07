@@ -12,7 +12,7 @@ async function bootstrap() {
     await app.register(fastifyCookie, {
         secret: process.env.COOKIE_SIGNATURE_SECRET, // for cookies signature
     });
-    await app.listen(+process.env.PORT, () => {
+    await app.listen(+process.env.PORT, process.env.ADDRESS, () => {
         console.log(`Server is up on ${process.env.PORT} ..`);
     });
 }
